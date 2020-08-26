@@ -1,7 +1,12 @@
-import { User } from "./models/User";
+import { User, UserProps } from "./models/User";
+import { Collection } from "./models/Collection";
 
-const user = User.buildUser({ name: "Hasan", age: 55, id: 16 });
-console.log(user.get("name"));
+// const user = User.buildUser<User, UserProps>({
+//   name: "Hasan",
+//   age: 55,
+//   id: 16,
+// });
+// console.log(user.get("name"));
 
 // user.sync.save(user.attributes.get("name"));
 // const user2 = new User({ name: "Hasan", age: 55 });
@@ -13,22 +18,26 @@ console.log(user.get("name"));
 
 // const user = new User({ age: 44, name: "Hasan", id: 1 });
 
-user.on("save", () => {
-  console.log("save");
-  console.log(user);
-});
-user.on("click", () => {
-  console.log("click2");
-});
-user.on("change", () => {
-  console.log("change");
-});
-user.on("change", () => {
-  console.log("change2");
-  console.log(user);
-});
+// user.on("save", () => {
+//   console.log("save");
+//   console.log(user);
+// });
+// user.on("click", () => {
+//   console.log("click2");
+// });
+// user.on("change", () => {
+//   console.log("change2");
+//   console.log(user);
+// });
 // user.set({ name: "Hasaan" });
 
 // user.trigger("click");
 // user.fetch();
-user.save();
+// user.save();
+const collection = User.buildUserCollection();
+
+collection.on("change", () => {
+  console.log(collection);
+});
+
+collection.fetch();
